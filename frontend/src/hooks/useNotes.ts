@@ -2,20 +2,23 @@ import { useEffect, useState } from "react";
 import type { Note } from "../types/Note";
 
 export const useNotes = () => {
-  const [notes, setNotes] = useState<Note[]>([]);
-
   // Load
-  useEffect(() => {
+  const [notes, setNotes] = useState<Note[]>(() => {
     const saved = localStorage.getItem("notes");
-    if (saved) setNotes(JSON.parse(saved));
-  }, []);
+    return saved ? JSON.parse(saved) : [];
+  });
 
   // Save
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
-  const addNote = (title: string, content: string, tag: string,tps : number) => {
+  const addNote = (
+    title: string,
+    content: string,
+    tag: string,
+    tps: number,
+  ) => {
     const newNote: Note = {
       id: crypto.randomUUID(),
       title,
@@ -29,8 +32,6 @@ export const useNotes = () => {
     setNotes((prev) => [newNote, ...prev]);
   };
 
-  
-
   const deleteNote = (id: string) => {
     setNotes((prev) => prev.filter((n) => n.id !== id));
   };
@@ -38,22 +39,18 @@ export const useNotes = () => {
   const updateNote = (updated: Note) => {
     setNotes((prev) =>
       prev.map((n) =>
-        n.id === updated.id
-          ? { ...updated, updatedAt: Date.now() }
-          : n
-      )
+        n.id === updated.id ? { ...updated, updatedAt: Date.now() } : n,
+      ),
     );
   };
 
   const togglePin = (id: string) => {
-  setNotes((prev) =>
-    prev.map((note) =>
-      note.id === id
-        ? { ...note, pinned: !note.pinned }
-        : note
-    )
-  );
-};
+    setNotes((prev) =>
+      prev.map((note) =>
+        note.id === id ? { ...note, pinned: !note.pinned } : note,
+      ),
+    );
+  };
 
   return { notes, addNote, deleteNote, updateNote, togglePin };
 };

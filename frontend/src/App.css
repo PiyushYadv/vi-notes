@@ -27,7 +27,7 @@ body {
   background: white;
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   margin-bottom: 20px;
 }
 
@@ -39,6 +39,16 @@ body {
   font-size: 14px;
 }
 
+.form-error {
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: -4px;
+}
+
+.input-error {
+  border-color: #dc2626 !important;
+}
+
 .note-form textarea {
   min-height: 80px;
   resize: none;
@@ -48,7 +58,7 @@ body {
   padding: 10px;
   border: none;
   border-radius: 6px;
-  background-color: #2F6B3F;
+  background-color: #2f6b3f;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -56,7 +66,7 @@ body {
 }
 
 .note-form button:hover {
-  background-color: #2F6B3F;
+  background-color: #2f6b3f;
 }
 
 /* ===== Notes List ===== */
@@ -71,7 +81,7 @@ body {
   background: white;
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s;
 }
 
@@ -110,6 +120,24 @@ body {
   transition: 0.2s;
 }
 
+/* Logout Button */
+.btn-logout {
+  background-color: #ef4444;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.btn-logout:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+}
+
+.user-section .btn-logout {
+  margin-left: 10px;
+}
+
 .btn-delete {
   background-color: #ef4444;
   color: white;
@@ -135,14 +163,12 @@ body {
   display: inline-block;
 }
 
-
-
 /* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #2F6B3F;
+  background: #2f6b3f;
   color: white;
   padding: 12px 20px;
   border-radius: 10px;
@@ -168,7 +194,7 @@ body {
   height: 35px;
   border-radius: 50%;
   background: white;
-  color: #2F6B3F;
+  color: #2f6b3f;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,7 +229,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -215,20 +241,18 @@ body {
   padding: 20px;
   border-radius: 10px;
   width: 400px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
-
 
 .tag {
   display: inline-block;
   background: #e0e7ff;
-  color: #2F6B3F;
+  color: #2f6b3f;
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 12px;
   margin-bottom: 6px;
 }
-
 
 .stats-container {
   margin: 20px;
@@ -289,8 +313,6 @@ body {
   border-radius: 6px;
 }
 
-
-
 .app-layout {
   display: flex;
 }
@@ -304,7 +326,7 @@ body {
 .sidebar {
   width: 200px;
   height: 100vh;
-  background: #79AE6F;
+  background: #79ae6f;
   color: white;
   padding: 20px;
 }
@@ -333,8 +355,6 @@ body {
   padding: 20px;
 }
 
-
-
 .stats-container {
   padding: 20px;
 }
@@ -352,7 +372,7 @@ body {
   padding: 20px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .card h3 {
@@ -404,9 +424,32 @@ body {
 .tag {
   display: inline-block;
   background: #eef2ff;
-  color: #2F6B3F;
+  color: #2f6b3f;
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 12px;
   margin-bottom: 8px;
+}
+
+/* validation */
+.form-error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: -6px;
+}
+
+.input-error {
+  border: 1px solid #dc2626 !important;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.auth-link {
+  color: #2f6b3f;
+  font-weight: bold;
+  cursor: pointer;
 }
