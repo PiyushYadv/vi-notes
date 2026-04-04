@@ -5,6 +5,10 @@ body {
   background-color: #f5f7fb;
 }
 
+a {
+  color: inherit;
+}
+
 /* ===== App Container ===== */
 .app-container {
   max-width: 900px;
@@ -357,6 +361,68 @@ body {
 
 .stats-container {
   padding: 20px;
+}
+
+.auth-page {
+  max-width: 480px;
+  padding-top: 64px;
+}
+
+.auth-description {
+  text-align: center;
+  color: #4b5563;
+  margin: -6px 0 20px;
+}
+
+.auth-switch {
+  text-align: center;
+  color: #4b5563;
+}
+
+.auth-inline-link {
+  margin-top: -4px;
+  margin-bottom: 20px;
+}
+
+.auth-link {
+  color: #2f6b3f;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.form-success {
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: auto;
+    height: auto;
+  }
+
+  .navbar {
+    align-items: flex-start;
+    gap: 16px;
+    flex-direction: column;
+  }
+
+  .user-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Top cards */

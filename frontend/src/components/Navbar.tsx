@@ -1,5 +1,6 @@
 import React from "react";
 import type { User } from "../contexts/AuthContext";
+
 interface Props {
   user: User;
   logout: () => void;

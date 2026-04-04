@@ -3,6 +3,8 @@ import { useUser } from "../features/authentication/useUser";
 import { useLogin } from "../features/authentication/useLogin";
 import { useSignup } from "../features/authentication/useSignup";
 import { useLogout } from "../features/authentication/useLogout";
+import { useForgotPassword } from "../features/authentication/useForgotPassword";
+import { useResetPassword } from "../features/authentication/useResetPassword";
 
 // ---- User type ----
 export type User = {
@@ -22,6 +24,16 @@ export type LoginInput = {
   password: string;
 };
 
+export type ForgotPasswordInput = {
+  email: string;
+};
+
+export type ResetPasswordInput = {
+  token: string;
+  password: string;
+  passwordConfirm: string;
+};
+
 // ---- Context type ----
 type AuthContextType = {
   user: User | null;
@@ -30,13 +42,26 @@ type AuthContextType = {
 
   login: (data: LoginInput, options?: { onSuccess?: () => void }) => void;
   signup: (data: SignupInput, options?: { onSuccess?: () => void }) => void;
+  forgotPassword: (
+    data: ForgotPasswordInput,
+    options?: { onSuccess?: (message: string) => void },
+  ) => void;
+  resetPassword: (
+    data: ResetPasswordInput,
+    options?: { onSuccess?: () => void },
+  ) => void;
   logout: () => void;
 
   isLoggingIn: boolean;
   isSigningUp: boolean;
   isLoggingOut: boolean;
+  isForgettingPassword: boolean;
+  isResettingPassword: boolean;
   loginError: string | null;
   signupError: string | null;
+  forgotPasswordError: string | null;
+  resetPasswordError: string | null;
+  forgotPasswordMessage: string | null;
 };
 
 // ---- Context ----
@@ -62,6 +87,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
     error: signupError,
   } = useSignup();
   const { logout, isLoading: isLoggingOut } = useLogout();
+  const {
+    forgotPassword: forgotPasswordMutation,
+    isLoading: isForgettingPassword,
+    error: forgotPasswordError,
+    message: forgotPasswordMessage,
+  } = useForgotPassword();
+  const {
+    resetPassword: resetPasswordMutation,
+    isLoading: isResettingPassword,
+    error: resetPasswordError,
+  } = useResetPassword();
 
   const login = (data: LoginInput, options?: { onSuccess?: () => void }) => {
     loginMutation(data, options);
@@ -69,6 +105,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const signup = (data: SignupInput, options?: { onSuccess?: () => void }) => {
     signupMutation(data, options);
+  };
+
+  const forgotPassword = (
+    data: ForgotPasswordInput,
+    options?: { onSuccess?: (message: string) => void },
+  ) => {
+    forgotPasswordMutation(data, {
+      onSuccess: (message) => options?.onSuccess?.(message),
+    });
+  };
+
+  const resetPassword = (
+    data: ResetPasswordInput,
+    options?: { onSuccess?: () => void },
+  ) => {
+    resetPasswordMutation(data, options);
   };
 
   return (
@@ -79,12 +131,19 @@ export function AuthProvider({ children }: AuthProviderProps) {
         isLoading,
         login,
         signup,
+        forgotPassword,
+        resetPassword,
         logout,
         isLoggingIn,
         isSigningUp,
         isLoggingOut,
+        isForgettingPassword,
+        isResettingPassword,
         loginError,
         signupError,
+        forgotPasswordError,
+        resetPasswordError,
+        forgotPasswordMessage,
       }}
     >
       {children}

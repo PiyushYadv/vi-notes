@@ -1,0 +1,15 @@
+extends ./base.pug
+
+block content
+  p(style="margin:0 0 10px;color:#6b7280;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;") Welcome
+  h1(style="margin:0 0 16px;font-size:28px;color:#111827;")= subject
+  p(style="margin:0 0 14px;line-height:1.7;") Hi #{firstName},
+  p(style="margin:0 0 24px;line-height:1.7;color:#4b5563;")= intro
+  a(
+    href=url
+    style="display:inline-block;padding:12px 18px;background-color:#2f6b3f;color:#ffffff;text-decoration:none;border-radius:10px;font-weight:700;"
+  )= buttonLabel
+  p(style="margin:24px 0 8px;line-height:1.7;color:#6b7280;")
+    | If the button does not work, copy and paste this link into your browser:
+  p(style="margin:0;word-break:break-all;")
+    a(href=url style="color:#2f6b3f;text-decoration:none;")= url

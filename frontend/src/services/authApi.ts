@@ -12,11 +12,22 @@ export const api = axios.create({
 
 type AuthResponse = {
   status: string;
+  message?: string;
   token?: string;
   data?: {
     user?: User;
     data?: User;
   };
+};
+
+export type ForgotPasswordInput = {
+  email: string;
+};
+
+export type ResetPasswordInput = {
+  token: string;
+  password: string;
+  passwordConfirm: string;
 };
 
 export const loginApi = async ({ email, password }: LoginInput) => {
@@ -40,4 +51,22 @@ export const logoutApi = async () => {
 export const getMeApi = async () => {
   const { data } = await api.get<AuthResponse>("/me");
   return data.data?.data ?? null;
+};
+
+export const forgotPasswordApi = async ({ email }: ForgotPasswordInput) => {
+  const { data } = await api.post<AuthResponse>("/forgotPassword", { email });
+  return data.message ?? "If that account exists, a reset link has been sent.";
+};
+
+export const resetPasswordApi = async ({
+  token,
+  password,
+  passwordConfirm,
+}: ResetPasswordInput) => {
+  const { data } = await api.patch<AuthResponse>(`/resetPassword/${token}`, {
+    password,
+    passwordConfirm,
+  });
+
+  return data.data?.user ?? null;
 };

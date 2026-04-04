@@ -1,23 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import type { SignupInput, User } from "../../contexts/AuthContext";
 import { signupApi } from "../../services/authApi";
-
-function getErrorMessage(error: unknown) {
-  if (axios.isAxiosError<{ message?: string }>(error)) {
-    if (!error.response) {
-      return "We couldn't reach the server. Please make sure the backend is running.";
-    }
-
-    return (
-      error.response?.data?.message || "Signup failed. Please try again."
-    );
-  }
-
-  if (error instanceof Error) return error.message;
-
-  return "Signup failed. Please try again.";
-}
+import { getAuthErrorMessage } from "./authError";
 
 export function useSignup() {
   const queryClient = useQueryClient();
@@ -37,5 +21,9 @@ export function useSignup() {
     },
   });
 
-  return { signup, isLoading, error: error ? getErrorMessage(error) : null };
+  return {
+    signup,
+    isLoading,
+    error: error ? getAuthErrorMessage(error, "Signup failed. Please try again.") : null,
+  };
 }

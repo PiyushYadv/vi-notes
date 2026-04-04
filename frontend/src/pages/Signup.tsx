@@ -11,7 +11,7 @@ export default function Signup() {
   if (isAuthenticated) return <Navigate to="/" />;
 
   return (
-    <div className="app-container">
+    <div className="app-container auth-page">
       <h2 className="app-title">Signup</h2>
 
       <SignupForm />

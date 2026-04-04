@@ -36,15 +36,15 @@ function sanitizeValue(value: unknown): unknown {
 
 const app = express();
 const frontendOrigin = process.env.FRONTEND_URL || "http://localhost:5173";
+const publicDirectory = path.resolve(process.cwd(), "public");
 
-app.enable("trust proxy");
+app.set("trust proxy", process.env.NODE_ENV === "production" ? 1 : false);
 
 app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.resolve(process.cwd(), "views"));
 
 // Serving static files
-// app.use(express.static(`${__dirname}/public`));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(publicDirectory));
 
 // Set security HTTP headers
 app.use(
