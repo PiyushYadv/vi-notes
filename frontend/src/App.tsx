@@ -73,8 +73,8 @@ const App: React.FC = () => {
         {activeView === "Notes" && (
           <>
             <NoteForm
-              onAdd={(title, content, tag) =>
-                addNote(title, content, tag)
+              onAdd={(title, content, tag,tps) =>
+                addNote(title, content, tag,tps)
               }
             />
 

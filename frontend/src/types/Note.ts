@@ -6,5 +6,5 @@ export interface Note {
   updatedAt: number;
   pinned: boolean;
   tag: string;
-  
+  tps : number;
 }

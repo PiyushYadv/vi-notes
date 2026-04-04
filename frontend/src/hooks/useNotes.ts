@@ -15,12 +15,13 @@ export const useNotes = () => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
 
-  const addNote = (title: string, content: string, tag: string) => {
+  const addNote = (title: string, content: string, tag: string,tps : number) => {
     const newNote: Note = {
       id: crypto.randomUUID(),
       title,
       content,
       tag,
+      tps,
       createdAt: Date.now(),
       updatedAt: Date.now(),
       pinned: false,

@@ -45,6 +45,10 @@ const NoteItem: React.FC<Props> = ({
         >
           Edit
         </button>
+
+          <span className="btn  tps-btn">
+     {note.tps.toFixed(2)} wpm
+  </span>
       </div>
     </div>
   );
